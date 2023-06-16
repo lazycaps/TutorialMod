@@ -1,6 +1,7 @@
 package net.lazycaps.tutorialmod;
 
 import com.mojang.logging.LogUtils;
+import net.lazycaps.tutorialmod.block.ModBlocks;
 import net.lazycaps.tutorialmod.item.ModCreativeModeTabs;
 import net.lazycaps.tutorialmod.item.ModItems;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -29,6 +30,7 @@ public class TutorialMod
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
@@ -46,6 +48,10 @@ public class TutorialMod
         if(event.getTab() == CreativeModeTabs.INGREDIENTS) {
             event.accept(ModItems.BLACK_OPAL);
             event.accept(ModItems.RAW_BLACK_OPAL);
+        }
+
+        if(event.getTab() == CreativeModeTabs.BUILDING_BLOCKS) {
+            event.accept(ModBlocks.BLACK_OPAL_BLOCK);
         }
 
         if(event.getTab() == ModCreativeModeTabs.TUTORIAL_TAB) {
